@@ -1,0 +1,52 @@
+{% load static %} 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ebebfd; 
+        }
+        h1 {
+            font-weight: bold;
+            font-size: 36px; 
+            margin-top: 50px; 
+        }
+        .uploaded-files {
+            background-color: #fff; 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            margin-top: 50px; 
+            max-width: 600px; 
+            margin-left: auto; 
+            margin-right: auto; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome, {{ first_name }}</h1>
+    <div>{% include 'upload.html' %}</div> 
+    <!-- Display encrypted files section -->
+    <div class="uploaded-files">
+         
+        <h2>Uploaded Files</h2> 
+        <ul>
+            {% if user_files %}
+                {% for file in user_files %} 
+                    <li><a href="{% url 'view_file' file_id=file.id %}">{{ file.file_name }}</a> 
+                    </li>
+                {% endfor %}
+            {% else %}
+                <p>No files yet</p>
+            {% endif %}
+        </ul>
+        </ul>
+    </div>
+</body>
+</html>
