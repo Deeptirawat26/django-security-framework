@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload File</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .upload-form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .upload-form h2 {
+            margin-bottom: 20px;
+        }
+
+        .upload-form label {
+            display: block;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .upload-form select,
+        .upload-form input[type="file"],
+        .upload-form input[type="text"],
+        .upload-form button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .upload-form button[type="submit"] {
+            background-color: #f02ff0;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .upload-form button[type="submit"]:hover {
+            background-color: #dd43dd;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-form">
+        <h2>Upload File</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %} 
+            <label for="id_file_name">File Name:</label>
+            <input type="text" name="file_name" id="id_file_name">
+            {{ form.file_name }}
+            
+            <label for="id_file">File to Upload:</label>
+            <input type="file" name="file" id="id_file">
+            {{ form.file }} 
+            
+            <label for="id_username">Username:</label>
+            <input type="text" name="username" id="id_username">
+            {{ form.username }}
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+</body>
+</html>
